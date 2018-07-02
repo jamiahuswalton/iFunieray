@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
     Button buttonOK;
     private AdView myAdView;
     //TextView debugTextView;
-    //This is a test in the main activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
