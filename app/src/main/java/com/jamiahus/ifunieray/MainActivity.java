@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
     Button buttonOK;
     private AdView myAdView;
     //TextView debugTextView;
+    //This is a test in the main activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,13 @@ public class MainActivity extends Activity {
 
         //Load ad
         //Load ad
-        myAdView = (AdView)findViewById(R.id.myAdView);
+        myAdView = findViewById(R.id.myAdView);
         AdRequest myAdRequest = new AdRequest.Builder().build();
         myAdView.loadAd(myAdRequest);
 
         //debugTextView = (TextView) findViewById(R.id.debugView);
-        mainCalednarView = (CalendarView) findViewById(R.id.mainCalendarView);
-        buttonOK = (Button) findViewById(R.id.button_OK);
+        mainCalednarView = findViewById(R.id.mainCalendarView);
+        buttonOK = findViewById(R.id.button_OK);
 
 
 
