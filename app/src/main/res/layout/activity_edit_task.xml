@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:orientation="vertical"
+    tools:context="com.jamiahus.ifunieray.EditTask">
+
+    <TextView
+        android:id="@+id/textView_pick_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".70"
+        android:text="Task Date"
+        android:textSize="25sp" />
+
+    <DatePicker
+        android:id="@+id/datePicker_Task_Date"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.30"
+        android:calendarViewShown="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_TaskTitle"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editText_Title"
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Task Title"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_taskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".70"
+        android:text="Description"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editText_TaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.30"
+        android:gravity="top"
+        android:hint="Task Description"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_update_task"
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+
+            android:text="Update Task" />
+
+        <Button
+            android:id="@+id/button_Delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffff0000"
+            android:text="DELETE" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "378726389057",
+    "firebase_url": "https://ifunieray.firebaseio.com",
+    "project_id": "ifunieray",
+    "storage_bucket": "ifunieray.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378726389057:android:b59188da6b584e0a",
+        "android_client_info": {
+          "package_name": "com.jamiahus.ifunieray"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378726389057-u4eriu1lnplp1aefjhpvgfubmjs0b9lb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jamiahus.ifunieray",
+            "certificate_hash": "66b31ef7243e9e97a27c2d4b1bc08fbb6805ec70"
+          }
+        },
+        {
+          "client_id": "378726389057-53pihioi404s3kpgd2l6ja0kai6sn1jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDBtyTirVh3izzQh3qzvH3Mp0n_bcasqA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378726389057-53pihioi404s3kpgd2l6ja0kai6sn1jr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
