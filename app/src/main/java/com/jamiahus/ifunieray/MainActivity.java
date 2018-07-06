@@ -17,12 +17,13 @@ import com.google.android.gms.ads.AdView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends Activity {
     CalendarView mainCalednarView;
+    //This button is used to confirm that the user wants to view the events for the currently selected day.
     Button buttonOK;
     private AdView myAdView;
-    //TextView debugTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +31,18 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //Log.e("Database Test", "The onUpgrade method was launched.");
-        Log.d("DATABASE DEBUG", "Value: " + checkDataBase());
+        //Log.d("DATABASE DEBUG", "Value: " + checkDataBase());
         if (checkDataBase()){
             DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
             SQLiteDatabase db = myDbHelpder.getWritableDatabase();
         }
-        Log.d("DATABASE DEBUG", "Value(2): " + checkDataBase());
+        //Log.d("DATABASE DEBUG", "Value(2): " + checkDataBase());
 
-        //Load ad
         //Load ad
         myAdView = findViewById(R.id.myAdView);
         AdRequest myAdRequest = new AdRequest.Builder().build();
         myAdView.loadAd(myAdRequest);
 
-        //debugTextView = (TextView) findViewById(R.id.debugView);
         mainCalednarView = findViewById(R.id.mainCalendarView);
         buttonOK = findViewById(R.id.button_OK);
 
@@ -52,24 +51,13 @@ public class MainActivity extends Activity {
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat sdfMonth = new SimpleDateFormat("MM");
-                SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
-                SimpleDateFormat sdfYear = new SimpleDateFormat("yyy");
+                SimpleDateFormat sdfMonth = new SimpleDateFormat("MM", Locale.US);
+                SimpleDateFormat sdfDay = new SimpleDateFormat("dd", Locale.US);
+                SimpleDateFormat sdfYear = new SimpleDateFormat("yyy", Locale.US);
 
                 String selectedDateMonth = getMonthName(Integer.valueOf(sdfMonth.format(new Date(mainCalednarView.getDate())))) ;
                 int selectedDateDay = Integer.valueOf(sdfDay.format(new Date(mainCalednarView.getDate()))) ;
                 int selectedDateYear =Integer.valueOf(sdfYear.format(new Date(mainCalednarView.getDate()))) ;
-
-                /*
-                Context context = getApplicationContext();
-                CharSequence text = "Ok button was clicked! ";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                */
-
-                //mainCalednarView.dat;
-                //String monthName = getMonthName(month);
 
 
                 //TODO Start Actvity for the day view. In this view we will show the hours of the day.
@@ -84,31 +72,10 @@ public class MainActivity extends Activity {
                 startActivity(startDayViewActivity);
             }
         });
-
-        /*
-        mainCalednarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                //debugTextView.setText("Date: " + getMonthName(month) + " " + String.valueOf(dayOfMonth) +  " " + String.valueOf(year));
-                String monthName = getMonthName(month);
-
-
-                //TODO Start Actvity for the day view. In this view we will show the hours of the day.
-                //Intent to start Day View Activity
-                Intent startDayViewActivity = new Intent(getApplicationContext(), DayViewActivity.class);
-                //---- Day Information for the intent
-
-                startDayViewActivity.putExtra("Month", monthName);
-                startDayViewActivity.putExtra("Day", dayOfMonth);
-                startDayViewActivity.putExtra("Year", year);
-
-                startActivity(startDayViewActivity);
-            }
-        }); */
     }
 
     private String getMonthName(int monthNumberInput){
-        String monthName ="";
+        String monthName;
 
         switch (monthNumberInput){
             case 1:
