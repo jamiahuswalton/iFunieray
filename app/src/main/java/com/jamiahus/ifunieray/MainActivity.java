@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         AdRequest myAdRequest = new AdRequest.Builder().build();
         myAdView.loadAd(myAdRequest);
 
-        mainCalednarView = findViewById(R.id.mainCalendarView);
+
         buttonOK = findViewById(R.id.button_OK);
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +73,16 @@ public class MainActivity extends Activity {
             }
         });
 
-        //TODO: Set on date change listner to check the number of task on the day that is currently selected.
+
         //mainCalednarView.setOnDateChangeListener(new View.OnClickListener());
+        mainCalednarView = findViewById(R.id.mainCalendarView);
+        mainCalednarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
+                //Show number of task for this day
+                CountTasksForGivenDay(1,2,"Test");
+            }
+        });
 
         //Count the number of tasks that are scheduled for this day. - Testing
         SimpleDateFormat sdfMonth = new SimpleDateFormat("MM", Locale.US);
@@ -84,8 +92,8 @@ public class MainActivity extends Activity {
         String selectedDateMonth = getMonthName(Integer.valueOf(sdfMonth.format(new Date(mainCalednarView.getDate())))) ;
         int selectedDateDay = Integer.valueOf(sdfDay.format(new Date(mainCalednarView.getDate()))) ;
         int selectedDateYear =Integer.valueOf(sdfYear.format(new Date(mainCalednarView.getDate()))) ;
-        int test = CountTasksForGivenDay(selectedDateYear,selectedDateDay,selectedDateMonth);
-        Toast.makeText(this, String.valueOf(test), Toast.LENGTH_SHORT).show();
+        //int test = CountTasksForGivenDay(selectedDateYear,selectedDateDay,selectedDateMonth);
+        //Toast.makeText(this, String.valueOf(test), Toast.LENGTH_SHORT).show();
     }
 
     private String getMonthName(int monthNumberInput){
@@ -150,23 +158,26 @@ public class MainActivity extends Activity {
         return checkDB != null;
     }
 
-    private int CountTasksForGivenDay(int currentYear, int currentDayOfMonth, String currentMonthName){
+    private void CountTasksForGivenDay(int currentYear, int currentDayOfMonth, String currentMonthName){
+        //TODO: Set on date change listner to check the number of task on the day that is currently selected.
         int taskCount = 0;
+
+        Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show();
 
         //Read from database ---
 
+        /*
         DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
         SQLiteDatabase db = myDbHelpder.getWritableDatabase();
-        /*
-        * Define a projection that specifies which columns from the database you will actually use
-        * after this query.  */
+        // Define a projection that specifies which columns from the database you will actually use
+        //after this query.
         String[] myProjection = {BaseColumns._ID,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_TITLE,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_DESCRIPTION,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK};
 
-        /* Pick the columns that I want to set a WHERE clause for. Ultimately, I want to pick all
-        of the tasks for a particular month, day, and year. The day that the user selected.*/
+        //Pick the columns that I want to set a WHERE clause for. Ultimately, I want to pick all
+        // of the tasks for a particular month, day, and year. The day that the user selected.
         String mySelection = DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_DAY_OF_MONTH_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_MONTH_TASK + " = ? ";
@@ -200,5 +211,6 @@ public class MainActivity extends Activity {
         myCursor.close();
 
         return taskCount;
+        */
     }
 }

@@ -54,11 +54,8 @@ public class DayViewActivity extends Activity {
 
         Bundle extras = getIntent().getExtras(); //The information about the day selected will be collected here.
 
-
         //TODO Need to create a list of activities that are on the day that is selected.
         initialTextView = (TextView) findViewById(R.id.Date_Display); //This is used to debug
-
-
 
         if (extras != null){
             monthName = extras.getString("Month");
@@ -78,15 +75,6 @@ public class DayViewActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 //TODO Start an activity that will open the selected item and then allow the user to edit it
-
-                /*
-                Context context = getApplicationContext();
-                CharSequence text = "You clicked an item, Yay! Item Name: " + position;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                */
 
                 Intent startEditTastActivity = new Intent(getApplicationContext(), EditTask.class);
                 //---- Day Information for the intent
@@ -111,17 +99,11 @@ public class DayViewActivity extends Activity {
                 //Intent to start Day View Activity
                 Intent startAddTaskActivity = new Intent(getApplicationContext(), AddTask.class);
 
-                //Task temp = listOfTasks.get(position);
-                //int selectedItemID = temp.GetTaskID();
                 startAddTaskActivity.putExtra("Month", monthName);
                 startAddTaskActivity.putExtra("Day", dayOfMonth);
                 startAddTaskActivity.putExtra("Year", year);
-                //startAddTaskActivity.putExtra("TastTitle", selectedItem);
-                //startAddTaskActivity.putExtra("TaskID", selectedItemID);
 
                 startActivity(startAddTaskActivity);
-
-                //startActivity(startAddTaskActivity);
             }
         });
 
@@ -155,20 +137,23 @@ public class DayViewActivity extends Activity {
 
         DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
         SQLiteDatabase db = myDbHelpder.getWritableDatabase();
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
+        /*
+        * Define a projection that specifies which columns from the database you will actually use
+        * after this query.  */
         String[] myProjection = {BaseColumns._ID,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_TITLE,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_DESCRIPTION,
                 DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK};
 
-        // Filter results WHERE "task title" = 'Pray'
+        /* Pick the columns that I want to set a WHERE clause for. Ultimately, I want to pick all
+        of the tasks for a particular month, day, and year. The day that the user selected.*/
         String mySelection = DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_DAY_OF_MONTH_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_MONTH_TASK + " = ? ";
-        String[] mySelectionArgs = { String.valueOf(year), String.valueOf(dayOfMonth), monthName};
+        //Pick what is the particular month day day year? This should be passed through the EXTRAs
+        String[] mySelectionArgs = {String.valueOf(year), String.valueOf(dayOfMonth), monthName};
 
-        // How you want the results sorted in the resulting Cursor
+        // How you want the results sorted in the resulting Cursor?
         String mySortOrder = DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_TITLE + " DESC";
 
         //DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
@@ -183,18 +168,6 @@ public class DayViewActivity extends Activity {
                 null,                   // don't filter by row groups
                 mySortOrder               // The sort order
         );
-
-        /*
-        Cursor myCursor = db.query(
-                DayTasksContract.DayTasksContent.TABLE_NAME,   // The table to query
-                myProjection,             // The array of columns to return (pass null to get all)
-                mySelection,              // The columns for the WHERE clause
-                null,          // The values for the WHERE clause
-                null,                   // don't group the rows
-                null,                   // don't filter by row groups
-                mySortOrder               // The sort order
-        );
-        */
 
         taskTitles.clear(); //Make sure the list is clear
         listOfTasks.clear(); //Make sure the list is clear

@@ -25,7 +25,7 @@
             android:noHistory="true"/>
         <activity
             android:name=".EditTask"
-            android:label="Edit Task"
+            android:label="@string/Tast_Edit_Title"
             android:noHistory="true"></activity>
 
     </application>

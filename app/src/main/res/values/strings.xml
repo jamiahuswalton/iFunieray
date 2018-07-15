@@ -4,6 +4,8 @@
     <string name="button_add_activity_text">Add New Activity</string>
     <!-- Fake add ID -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="OK_text">OK</string>
+    <string name="Tast_Edit_Title">Edit Task</string>
     <!-- Real add ID -->
     <!--<string name="banner_ad_unit_id">[enter id heres]</string>-->
     <string name="large_text">
