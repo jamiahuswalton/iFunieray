@@ -78,9 +78,10 @@ public class MainActivity extends Activity {
         mainCalednarView = findViewById(R.id.mainCalendarView);
         mainCalednarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
+            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
+                String monthName = getMonthName(month + 1);
                 //Show number of task for this day
-                CountTasksForGivenDay(1,2,"Test");
+                CountTasksForGivenDay(year,dayOfMonth,monthName);
             }
         });
 
@@ -89,11 +90,13 @@ public class MainActivity extends Activity {
         SimpleDateFormat sdfDay = new SimpleDateFormat("dd", Locale.US);
         SimpleDateFormat sdfYear = new SimpleDateFormat("yyy", Locale.US);
 
+        /*
         String selectedDateMonth = getMonthName(Integer.valueOf(sdfMonth.format(new Date(mainCalednarView.getDate())))) ;
         int selectedDateDay = Integer.valueOf(sdfDay.format(new Date(mainCalednarView.getDate()))) ;
         int selectedDateYear =Integer.valueOf(sdfYear.format(new Date(mainCalednarView.getDate()))) ;
         //int test = CountTasksForGivenDay(selectedDateYear,selectedDateDay,selectedDateMonth);
         //Toast.makeText(this, String.valueOf(test), Toast.LENGTH_SHORT).show();
+        */
     }
 
     private String getMonthName(int monthNumberInput){
@@ -162,7 +165,8 @@ public class MainActivity extends Activity {
         //TODO: Set on date change listner to check the number of task on the day that is currently selected.
         int taskCount = 0;
 
-        Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Month: " + currentMonthName + ", Day: " + currentDayOfMonth +
+                ", Year: " + currentYear,Toast.LENGTH_SHORT).show();
 
         //Read from database ---
 
