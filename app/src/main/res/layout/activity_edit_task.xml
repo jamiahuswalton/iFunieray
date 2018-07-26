@@ -31,8 +31,9 @@
 
         <EditText
             android:id="@+id/editText_Title"
-            android:layout_width="304dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:ems="10"
             android:hint="Task Title"
             android:inputType="textPersonName" />
@@ -59,15 +60,16 @@
 
         <Button
             android:id="@+id/button_update_task"
-            android:layout_width="229dp"
-            android:layout_height="wrap_content"
-
-            android:text="Update Task" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="UPDATE TASK" />
 
         <Button
             android:id="@+id/button_Delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:background="#ffff0000"
             android:text="DELETE" />
     </LinearLayout>
