@@ -91,12 +91,6 @@ public class EditTask extends Activity {
                         dialog.dismiss();
                     }
                 });
-
-                AlertDialog deleteAlert = deleteTaskBuilder.create();
-                deleteAlert.show();
-
-                //RemoveTaskFromDatabase(taskID);
-
             }
         });
 
@@ -207,7 +201,7 @@ public class EditTask extends Activity {
     }
 
     private int GetNumberForMonth (String inputMonth){
-        int monthNumber = -1;
+        int monthNumber;
         switch (inputMonth){
             case "January":
                 monthNumber = 0;
@@ -253,7 +247,7 @@ public class EditTask extends Activity {
         return monthNumber;
     }
     private String getMonthName(int monthNumberInput){
-        String monthName ="";
+        String monthName;
 
         switch (monthNumberInput){
             case 0:

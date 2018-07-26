@@ -59,8 +59,6 @@ public class MainActivity extends Activity {
                 int selectedDateDay = Integer.valueOf(sdfDay.format(new Date(mainCalednarView.getDate()))) ;
                 int selectedDateYear =Integer.valueOf(sdfYear.format(new Date(mainCalednarView.getDate()))) ;
 
-
-                //TODO Start Actvity for the day view. In this view we will show the hours of the day.
                 //Intent to start Day View Activity
                 Intent startDayViewActivity = new Intent(getApplicationContext(), DayViewActivity.class);
                 //---- Day Information for the intent
@@ -162,40 +160,30 @@ public class MainActivity extends Activity {
     }
 
     private void CountTasksForGivenDay(int currentYear, int currentDayOfMonth, String currentMonthName){
-        //TODO: Set on date change listner to check the number of task on the day that is currently selected.
         int taskCount = 0;
 
-        Toast.makeText(this,"Month: " + currentMonthName + ", Day: " + currentDayOfMonth +
-                ", Year: " + currentYear,Toast.LENGTH_SHORT).show();
-
         //Read from database ---
-
-        /*
         DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
         SQLiteDatabase db = myDbHelpder.getWritableDatabase();
         // Define a projection that specifies which columns from the database you will actually use
         //after this query.
-        String[] myProjection = {BaseColumns._ID,
-                DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_TITLE,
-                DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_DESCRIPTION,
-                DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK};
+        String[] myProjection = {BaseColumns._ID};
 
-        //Pick the columns that I want to set a WHERE clause for. Ultimately, I want to pick all
-        // of the tasks for a particular month, day, and year. The day that the user selected.
+        /*Pick the columns that I want to set a WHERE clause for.
+        Ultimately, I want to pick all of the tasks for a particular month, day, and year.
+        The day that the user selected. I just need to know how many tasks exist*/
+        //
         String mySelection = DayTasksContract.DayTasksContent.COLUMN_NAME_YEAR_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_DAY_OF_MONTH_TASK + " = ? AND " +
                 DayTasksContract.DayTasksContent.COLUMN_NAME_MONTH_TASK + " = ? ";
-        //Pick what is the particular month day day year? This should be passed through the EXTRAs
+        //Pass in the particular monday, day, and year. Order matters (compare to mySelection)
         String[] mySelectionArgs = {
                 String.valueOf(currentYear),
                 String.valueOf(currentDayOfMonth),
                 currentMonthName};
 
         // How you want the results sorted in the resulting Cursor?
-        String mySortOrder = DayTasksContract.DayTasksContent.COLUMN_NAME_TASK_TITLE + " DESC";
-
-        //DayTasksDBHelper myDbHelpder = new DayTasksDBHelper(getApplicationContext());
-        //SQLiteDatabase db = myDbHelpder.getWritableDatabase();
+        String mySortOrder = DayTasksContract.DayTasksContent._ID + " DESC";
 
         Cursor myCursor = db.query(
                 DayTasksContract.DayTasksContent.TABLE_NAME,   // The table to query
@@ -214,7 +202,12 @@ public class MainActivity extends Activity {
 
         myCursor.close();
 
-        return taskCount;
+        Toast.makeText(this, "Tast Count: " + String.valueOf(taskCount),Toast.LENGTH_SHORT).show();
+
+        /*
+        Toast.makeText(this,"Month: " + currentMonthName + ", Day: " + currentDayOfMonth +
+                ", Year: " + currentYear,Toast.LENGTH_SHORT).show();
         */
+        //return taskCount;
     }
 }

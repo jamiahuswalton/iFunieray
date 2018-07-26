@@ -30,30 +30,15 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView_TaskTitle"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textSize="25sp" />
-
         <EditText
             android:id="@+id/editText_Title"
-            android:layout_width="304dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Task Title"
             android:inputType="textPersonName" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_taskDescription"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".70"
-        android:text="Description"
-        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/editText_TaskDescription"

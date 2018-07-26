@@ -58,16 +58,6 @@ public class AddTask extends Activity {
                 int day = taskDatePicker.getDayOfMonth();
                 int year = taskDatePicker.getYear();
 
-                /*
-                Context context = getApplicationContext();
-                //CharSequence text = "Month: " + myMonth + ", " + "Day: " + day + ", " + "Year: " + year;
-                CharSequence text = "Title: " + taskTitle.getText() + ", Description: " + taskDescription.getText();
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                */
-
                 String inputTitle = taskTitle.getText().toString();
                 String inputDescription = taskDescription.getText().toString();
                 String inputMonth = getMonthName(myMonth);
