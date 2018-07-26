@@ -69,12 +69,10 @@ public class EditTask extends Activity {
         String currentTaskDescription = GetTaskDescription(taskID);
         editTextDescription.setText(currentTaskDescription);
 
-        //TODO need to add a way to delete a task
+
         buttonDeleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 AlertDialog.Builder deleteTaskBuilder = new AlertDialog.Builder(EditTask.this);
                 deleteTaskBuilder.setTitle("Deleting Task Warning!");
                 deleteTaskBuilder.setMessage("Are you sure you want to delete this task? This cannot be undone!");
